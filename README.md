@@ -1,1 +1,1 @@
-# react-api-redux
+# react_recettes
