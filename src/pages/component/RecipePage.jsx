@@ -3,8 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import FetchState from '../../components/FetchState/FetchState';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import OneRepiceService from '../service/OneRepiceSerice';
 import { useSelector } from "react-redux";
 import { recipeSelector } from "../store/recipeSelectors";
@@ -15,7 +14,9 @@ const oRS = new OneRepiceService()
 function RecipePage() {
   const { recipeId } = useParams();
   const { data: recipe, isLoading, isError, error } = useQuery(['recipe', recipeId], () => oRS.fetchRecipeById(recipeId));
-  const {recipes} = useSelector(recipeSelector);
+  const recipeFromStore = useSelector(recipeSelector(recipeId));
+  console.log(recipeFromStore);
+
 
  
   return (
